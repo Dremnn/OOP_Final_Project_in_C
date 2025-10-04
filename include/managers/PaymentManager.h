@@ -9,7 +9,6 @@
 
 using namespace std;
 
-// ============= PAYMENT MANAGER CLASS =============
 class PaymentManager {
 private:
     map<string, Payment*> payments;

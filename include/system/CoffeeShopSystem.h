@@ -146,7 +146,8 @@ public:
             throw ValidationException("Product is not available");
         }
         
-        cartManager->addToCart(customer->getId(), productId, quantity, product->getPrice(), size);
+        // Truyền thêm product type vào hàm addToCart của CartManager
+        cartManager->addToCart(customer->getId(), productId, quantity, product->getPrice(), product->getType(), size);
     }
     
     vector<CartItem*> viewCart() {

@@ -29,7 +29,9 @@ public:
     string getPhoneNumber() { return phoneNumber; }
     UserRole getRole() { return role; }
 
-    void setPhoneNumber(string phone) { phoneNumber = phone; }
+    void setPhoneNumber(string phone) { 
+        phoneNumber = phone; 
+    }
     
     virtual bool canModifyProduct() = 0;
 };

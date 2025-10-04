@@ -11,7 +11,6 @@
 
 using namespace std;
 
-// ============= USER MANAGER CLASS =============
 class UserManager {
 private:
     map<string, User*> users;

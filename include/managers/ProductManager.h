@@ -12,7 +12,6 @@
 
 using namespace std;
 
-// ============= PRODUCT MANAGER CLASS =============
 class ProductManager {
 private:
     map<string, Product*> products;

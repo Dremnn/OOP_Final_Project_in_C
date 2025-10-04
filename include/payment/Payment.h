@@ -8,7 +8,6 @@
 
 using namespace std;
 
-// ============= PAYMENT CLASS =============
 class Payment {
 private:
     string id;

@@ -6,10 +6,10 @@
 #include <string>
 #include "../cart/CartItem.h"
 #include "../exceptions/Exceptions.h"
+#include "../enums/Enums.h"  // Thêm include để sử dụng ProductType
 
 using namespace std;
 
-// ============= CART MANAGER CLASS =============
 class CartManager {
 private:
     map<string, vector<CartItem*>> userCarts;
@@ -23,12 +23,14 @@ public:
         }
     }
 
-    CartItem* addToCart(string customerId, string productId, int quantity, double unitPrice, string size = "M") {
+    // Cập nhật hàm addToCart để nhận ProductType
+    CartItem* addToCart(string customerId, string productId, int quantity, double unitPrice, ProductType productType, string size = "M") {
         if (quantity <= 0) {
             throw ValidationException("Quantity must be positive");
         }
         
-        CartItem* item = new CartItem(productId, customerId, quantity, unitPrice, size);
+        // Truyền productType vào constructor của CartItem
+        CartItem* item = new CartItem(productId, customerId, quantity, unitPrice, productType, size);
         userCarts[customerId].push_back(item);
         return item;
     }
@@ -63,6 +65,10 @@ public:
             vector<CartItem*>& cart = userCarts[customerId];
             for (CartItem* item : cart) {
                 if (item->getId() == itemId) {
+                    // Có thể thêm validation: chỉ cho phép update size cho DRINK
+                    if (item->getProductType() != DRINK) {
+                        throw ValidationException("Cannot update size for non-drink items");
+                    }
                     item->updateSize(newSize);
                     return;
                 }

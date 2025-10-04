@@ -11,7 +11,6 @@
 
 using namespace std;
 
-// ============= ORDER MANAGER CLASS =============
 class OrderManager {
 private:
     map<string, Order*> orders;
@@ -23,8 +22,7 @@ public:
         }
     }
 
-    Order* createOrder(string customerId, vector<CartItem*> items, OrderType type, 
-                       string deliveryAddress, PaymentMethod paymentMethod) {
+    Order* createOrder(string customerId, vector<CartItem*> items, OrderType type, string deliveryAddress, PaymentMethod paymentMethod) {
         if (items.empty()) {
             throw ValidationException("Cannot create order with empty cart");
         }

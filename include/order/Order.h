@@ -12,7 +12,6 @@
 
 using namespace std;
 
-// ============= ORDER CLASS =============
 class Order {
 protected:
     string id;

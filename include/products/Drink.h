@@ -7,7 +7,6 @@
 
 using namespace std;
 
-// ============= DRINK CLASS =============
 class Drink : public Product {
 private:
     string size;
@@ -26,7 +25,7 @@ public:
     void setSize(string s) { size = s; }
     void setIsHot(bool hot) { isHot = hot; }
     
-    void displayInfo() {
+    void displayInfo() override {
         Product::displayInfo();
         cout << "Size: " << size << endl;
         cout << "Temperature: " << (isHot ? "Hot" : "Cold") << endl;

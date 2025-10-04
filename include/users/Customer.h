@@ -8,7 +8,6 @@
 
 using namespace std;
 
-// ============= CUSTOMER CLASS =============
 class Customer : public User {
 private:
     string id;
@@ -27,7 +26,9 @@ public:
     
     void setAddress(string addr) { address = addr; }
     
-    bool canModifyProduct() { return false; }
+    bool canModifyProduct() override { 
+        return false; 
+    }
     
     void addOrderToHistory(string orderId) {
         orderHistory.push_back(orderId);

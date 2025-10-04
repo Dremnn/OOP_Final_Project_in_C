@@ -7,7 +7,6 @@
 
 using namespace std;
 
-// ============= FOOD CLASS =============
 class Food : public Product {
 private:
     bool isVegetarian;
@@ -21,7 +20,7 @@ public:
     bool getIsVegetarian() { return isVegetarian; }
     void setVegetarian(bool veg) { isVegetarian = veg; }
     
-    void displayInfo() {
+    void displayInfo() override {
         Product::displayInfo();
         cout << "Vegetarian: " << (isVegetarian ? "Yes" : "No") << endl;
     }

@@ -1,7 +1,6 @@
 #ifndef ENUMS_H
 #define ENUMS_H
 
-// ============= ENUMS =============
 enum UserRole {
     CUSTOMER,
     ADMIN

@@ -5,6 +5,7 @@
 #include <iostream>
 #include "../utils/Utils.h"
 #include "../exceptions/Exceptions.h"
+#include "../enums/Enums.h"  
 
 using namespace std;
 
@@ -17,15 +18,17 @@ private:
     int quantity;
     double unitPrice;
     string size;
+    ProductType productType;  
 
 public:
-    CartItem(string productId, string customerId, int quantity, double unitPrice, string size = "M") {
+    CartItem(string productId, string customerId, int quantity, double unitPrice, ProductType productType, string size = "M") {
         this->id = generateId("ITEM");
         this->productId = productId;
         this->customerId = customerId;
         this->quantity = quantity;
         this->unitPrice = unitPrice;
         this->size = size;
+        this->productType = productType;  
     }
     
     string getId() { return id; }
@@ -34,11 +37,18 @@ public:
     int getQuantity() { return quantity; }
     double getUnitPrice() { return unitPrice; }
     string getSize() { return size; }
+    ProductType getProductType() { return productType; }  
     
     double getTotalPrice() {
         double multiplier = 1.0;
-        if (size == "S") multiplier = 0.8;
-        else if (size == "L") multiplier = 1.3;
+        
+        // CHỈ áp dụng size multiplier cho DRINK
+        if (productType == DRINK) {
+            if (size == "S") multiplier = 0.8;
+            else if (size == "L") multiplier = 1.3;
+        }
+        // FOOD luôn có multiplier = 1.0 (không phụ thuộc size)
+        
         return quantity * unitPrice * multiplier;
     }
 
@@ -60,7 +70,9 @@ public:
         cout << "  Item ID: " << id << endl;
         cout << "  Product ID: " << productId << endl;
         cout << "  Quantity: " << quantity << endl;
-        cout << "  Size: " << size << endl;
+        if (productType == DRINK) {  
+            cout << "  Size: " << size << endl;
+        }
         cout << "  Unit Price: " << formatPrice(unitPrice) << endl;
         cout << "  Total: " << formatPrice(getTotalPrice()) << endl;
     }
