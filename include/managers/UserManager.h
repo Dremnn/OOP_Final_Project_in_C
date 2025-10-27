@@ -17,15 +17,12 @@ private:
     map<string, string> sessions; // sessionToken -> userId
 
     void validateUserInput(string username, string password, string phoneNumber) {
-        if (username.empty()) {
+        if (username.empty()) 
             throw ValidationException("Username cannot be empty");
-        }
-        if (password.length() < 6) {
+        if (password.length() < 6) 
             throw ValidationException("Password must be at least 6 characters");
-        }
-        if (phoneNumber.empty()) {
+        if (phoneNumber.empty()) 
             throw ValidationException("Phone number cannot be empty");
-        }
     }
 
     bool userExists(string username) {

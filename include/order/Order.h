@@ -28,12 +28,10 @@ protected:
 
 public:
     Order(string customerId, vector<CartItem*> items, OrderType orderType, string deliveryAddress) {
-        if (items.empty()) {
+        if (items.empty())
             throw ValidationException("Cannot create order with empty cart");
-        }
-        if (deliveryAddress.empty()) {
+        if (deliveryAddress.empty()) 
             throw ValidationException("Delivery address is required");
-        }
         
         this->id = generateId("ORD");
         this->customerId = customerId;
@@ -43,11 +41,10 @@ public:
         this->status = PENDING;
         this->payment = NULL;
         
-        if (orderType == EXPRESS_ORDER) {
+        if (orderType == EXPRESS_ORDER)
             this->deliveryFee = 50000;
-        } else {
+        else 
             this->deliveryFee = 25000;
-        }
         
         calculateTotal();
     }
